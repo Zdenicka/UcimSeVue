@@ -15,7 +15,7 @@
           <div class="cart">Cart({{ cart.length }})</div>
           <!--volání komponenty - může být i víckrát -->
           <!-- @add-to-cart - odkazuje na událost v podřízené komponentně-->
-          <product-display :premium = "premium" @add-to-cart="updateCart"></product-display>
+          <product-display :premium = "premium" @add-to-cart="updateCart" @remove-from-cart="removeItem"></product-display>
 
       </div>
 

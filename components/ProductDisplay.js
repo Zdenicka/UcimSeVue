@@ -47,14 +47,18 @@ app.component('product-display', {
                 <!--v-on => pro nějakou akci, click je celkem logicky kliknutí -->
                 <!-- na třídy se ještě podívej - hledej Multiple Class Names a Ternary Operators-->
                 <button class="button"
-                        :class="{disabledButton: !inStock }"
-                        v-on:click="addToCart"
-                        :disabled="!inStock">
+                    :class="{disabledButton: !inStock }"
+                    v-on:click="addToCart"
+                    :disabled="!inStock">
                     Add to Cart
                 </button>
-                <!-- v-on: můžu zkrátit na @ 
-                <button class="button" @click="RemoveFromCart">Remove Item</button>
-                -->
+                <!-- v-on: můžu zkrátit na @                 -->
+                <button class="button" 
+                    :class="{disabledButton: !inStock }"
+                    @click="RemoveFromCart">
+                    Remove Item
+                </button>
+
             </div>
         </div>
     </div>`,
@@ -84,11 +88,11 @@ app.component('product-display', {
             //do košíku předávám id zboží ze kterého kliknu na přidat do košíku
             this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
         },
-        /*
+
         RemoveFromCart() {
-            this.$emit('remove-from-cart')
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].id)
         },
-        */
+
         updateVariant(index) {
             this.selectedVariant = index
         }

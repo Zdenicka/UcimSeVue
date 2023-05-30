@@ -11,13 +11,13 @@ const app = Vue.createApp({
     methods: {
         updateCart(id) {
             this.cart.push(id)
+        },
+        
+        removeItem(id) {
+            let index = this.cart.indexOf(id);
+            if (index != -1 ) 
+                this.cart.splice(index, 1)
         }
-        /*
-        remoFromCart() {
-            if (this.cart > 0) 
-                this.cart -= 1
-        }
-        */
 
     },
 
