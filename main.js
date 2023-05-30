@@ -1,10 +1,24 @@
 const app = Vue.createApp({
     data() {
         return {
-            cart: 0,
+            //košík je tady definovaný jako pole
+            cart: [],
             premium: true
         }
     },
-    methods: {    },
+
+
+    methods: {
+        updateCart(id) {
+            this.cart.push(id)
+        }
+        /*
+        remoFromCart() {
+            if (this.cart > 0) 
+                this.cart -= 1
+        }
+        */
+
+    },
 
 })

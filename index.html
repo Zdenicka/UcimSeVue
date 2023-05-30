@@ -11,9 +11,11 @@
   <body>
       <div id="app">
           <div class="nav-bar"></div>
-          <div class="cart">Cart({{ cart }})</div>
+          <!--car.lenght je z toho důvodu, že košík teď obsahuje pole id zboží a takhle se zobrazuje délka pole - tedy množství zboží-->
+          <div class="cart">Cart({{ cart.length }})</div>
           <!--volání komponenty - může být i víckrát -->
-          <product-display :premium = "premium"></product-display>
+          <!-- @add-to-cart - odkazuje na událost v podřízené komponentně-->
+          <product-display :premium = "premium" @add-to-cart="updateCart"></product-display>
 
       </div>
 
@@ -22,6 +24,7 @@
 
       <!-- Import Component -->
       <script src="./components/ProductDisplay.js"></script>
+      <script src="./components/ProductDetails.js"></script>
 
       <!--Mount App-->
       <script>

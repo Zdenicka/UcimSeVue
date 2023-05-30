@@ -27,10 +27,6 @@ app.component('product-display', {
                 <p v-show="onSale">pokus s viditelností</p>
                 <!-- dvojtečka před prováděcím příkazem - zkratka pro v-bind -->
                 <a :href="url">Odkaz na hezké barvy</a>
-                <!-- v-for => jako foreach pro list -->
-                <ul>
-                    <li v-for="detail in details">{{ detail }}</li>
-                </ul>
                 <!-- key - specifický klíč pro danou položku seznamu-->
                 <div class="color-circle"
                     v-for="(variant, index) in variants"
@@ -44,7 +40,7 @@ app.component('product-display', {
                 protože tak ji mám zadanou v datech v mainu ve variants
                 můžu mít tu definici style i v objektu v datech v mainu a jen ji volat,
                 nebo ji můžu definovat přímo za rovnítkem-->
-
+                <product-details :details = "details"></product-details>
                 <ul>
                     <li v-for="(size, index) in sizes" :key="index">{{ size }}</li>
                 </ul>
@@ -56,9 +52,9 @@ app.component('product-display', {
                         :disabled="!inStock">
                     Add to Cart
                 </button>
-                <!-- v-on: můžu zkrátit na @ -->
+                <!-- v-on: můžu zkrátit na @ 
                 <button class="button" @click="RemoveFromCart">Remove Item</button>
-
+                -->
             </div>
         </div>
     </div>`,
@@ -84,14 +80,15 @@ app.component('product-display', {
 
     methods: {
         addToCart() {
-            this.cart += 1
+            // $emit předává funkcionalitu nadřazenému komponentu - musí být propojené do místa, kde volám onu nadřazenou komponentu
+            //do košíku předávám id zboží ze kterého kliknu na přidat do košíku
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
         },
+        /*
         RemoveFromCart() {
-            if (this.cart > 0) {
-                this.cart -= 1
-            }
+            this.$emit('remove-from-cart')
         },
-
+        */
         updateVariant(index) {
             this.selectedVariant = index
         }
