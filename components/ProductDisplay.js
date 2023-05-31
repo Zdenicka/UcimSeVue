@@ -58,10 +58,12 @@ app.component('product-display', {
                     @click="RemoveFromCart">
                     Remove Item
                 </button>
-
             </div>
         </div>
-    </div>`,
+        <review-list v-if="reviews.length" :reviews = "reviews"></review-list>
+        <review-form @review-submitted = "addReview"></review-form>
+    
+        </div>`,
 
     data() {
         return {
@@ -78,7 +80,8 @@ app.component('product-display', {
             sizes: ['S', 'M', 'L', 'XL', 'XXL'],
             brand: 'Vue Mastery',
             /* jen pro mě - pro visibility*/
-            onSale: true
+            onSale: true,
+            reviews: []
         }
     },
 
@@ -95,6 +98,10 @@ app.component('product-display', {
 
         updateVariant(index) {
             this.selectedVariant = index
+        },
+
+        addReview(review) {
+            this.reviews.push(review)
         }
     },
 
